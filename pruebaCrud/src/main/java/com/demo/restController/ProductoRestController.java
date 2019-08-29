@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.entity.Products;
-import com.demo.service.ProductoServiceImpl;
+import com.demo.service.ProductoService;
 
 @RestController
 public class ProductoRestController {
 	
-	private ProductoServiceImpl proService;
+	private ProductoService/*<Products>*/ proService;
 	
 	@Autowired
-	public ProductoRestController(ProductoServiceImpl proService) {
+	public ProductoRestController(ProductoService/*<Products>*/ proService) {
 		this.proService = proService;
 	}
 	
+	//metodo consultar
 	@RequestMapping(value = "/producto", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public List<Products> getProducts() {

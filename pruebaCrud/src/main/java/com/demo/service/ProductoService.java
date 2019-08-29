@@ -9,5 +9,5 @@ public interface ProductoService {
 
 	public List<Products> findAll();
 	
-	public void delete(Products id);
+	public void delete(Long id);
 }
