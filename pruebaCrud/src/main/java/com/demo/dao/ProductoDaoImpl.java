@@ -92,8 +92,19 @@ public class ProductoDaoImpl implements InterfaceProductoDao{
 
 	@Override
 	public <S extends Products> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+		Transaction transaction = null;
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			transaction = session.beginTransaction();
+			session.save(entity);
+			transaction.commit();
+			return entity;
+		} catch (Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

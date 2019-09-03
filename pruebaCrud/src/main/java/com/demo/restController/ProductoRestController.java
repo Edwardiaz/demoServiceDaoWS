@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,13 @@ public class ProductoRestController {
 	public ProductoRestController(ProductoService/*<Products>*/ proService) {
 		this.proService = proService;
 	}
+	
+	//metodo insertar
+		@RequestMapping(value = "/producto", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+		@ResponseBody
+		public Products saveProducts(@RequestBody Products pro) {
+			return proService.saveProducts(pro);
+		}
 	
 	//metodo consultar
 	@RequestMapping(value = "/producto", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})

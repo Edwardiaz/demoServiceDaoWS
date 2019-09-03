@@ -6,6 +6,8 @@ import com.demo.entity.Products;
 
 
 public interface ProductoService {
+	
+	public Products saveProducts(Products pro);
 
 	public List<Products> findAll();
 	
